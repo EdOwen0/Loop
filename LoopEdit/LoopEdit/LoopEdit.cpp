@@ -1,8 +1,11 @@
 #include <iostream>
 #include <windows.h>
 #include <tlhelp32.h>
-#include "processthreadsapi.h"
-
+#include <processthreadsapi.h>
+#include <memoryapi.h>
+#include <psapi.h>
+#include <string>
+  
 
 bool bPrintProcesses;
 
@@ -24,8 +27,6 @@ DWORD GetPID()
       {
         return entry.th32ProcessID;
       }
-
-
     }
   }
   return 0x00000000;
@@ -36,14 +37,22 @@ DWORD GetPID()
 
 int main()
 {
-  bPrintProcesses = true;
+  bPrintProcesses = false;
   DWORD pid = GetPID();
-  HANDLE hProcess = OpenProcess(WRITE_DAC | READ_CONTROL, false, pid);
-  
-  
-  std::cout << "Hello World!\n";
+  HANDLE hTargetProcessToken = OpenProcess(WRITE_DAC | READ_CONTROL | PROCESS_VM_READ, false, pid);
+  std::string mm;
+  LPSTR pBuffer[128];
+  pBuffer = mm;
+
+  DWORD FileName = GetProcessImageFileNameA(hTargetProcessToken, *pBuffer, 0x00FF);
 
 
-  CloseHandle(hProcess);
+  std::cout << &hTargetProcessToken << std::endl;
+  std::cout << hTargetProcessToken << std::endl;
+  hTargetProcessToken;
+  
+  
+  CloseHandle(hTargetProcessToken);
+  std::cin.ignore();
   return 0;
 }
