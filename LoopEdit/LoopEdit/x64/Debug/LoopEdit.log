@@ -1,2 +1,4 @@
 ﻿  LoopEdit.cpp
-  LoopEdit.vcxproj -> E:\Projects\Programs\C++\Loop\LoopEdit\x64\Debug\LoopEdit.exe
+C:\Users\Edward\Documents\GitHub\Loop\LoopEdit\LoopEdit\LoopEdit.cpp(77,36): warning C4311: 'type cast': pointer truncation from 'HMODULE' to 'DWORD'
+C:\Users\Edward\Documents\GitHub\Loop\LoopEdit\LoopEdit\LoopEdit.cpp(77,36): warning C4302: 'type cast': truncation from 'HMODULE' to 'DWORD'
+  LoopEdit.vcxproj -> C:\Users\Edward\Documents\GitHub\Loop\LoopEdit\x64\Debug\LoopEdit.exe
